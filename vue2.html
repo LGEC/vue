@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/Vue_2.2.2.js" ></script>
+	</head>
+	<body>
+		<div id="parent">
+			<!--<my-component :foo="baz" :bar="qux" @event-a="doThis" @event-b="doThat">
+			  <img slot="icon" src="...">
+			  <p slot="main-text">Hello!</p>
+			</my-component>-->
+			<example></example>
+		</div>
+		
+		<script type="text/javascript">
+//			Vue.component('my-component',{
+//				template:'<div id="parent"><user-profile ref="profile"></user-profile></div>'
+//			})
+//			var parent = new Vue({ el: '#parent' })
+//			// 访问子组件实例
+//			var child = parent.$refs.profile
+			Vue.component('example', {
+				template: '<span>{{ message }}</span>',
+				data: function () {
+				    return {
+				      message: '没有更新'
+				    }
+				},
+				methods: {
+				    updateMessage: function () {
+				      this.message = '更新完成'
+				      console.log(this.$el.textContent) // => '没有更新'
+				      this.$nextTick(function () {
+				        console.log(this.$el.textContent) // => '更新完成'
+				      })
+				    }
+				}
+			})
+			var app = new Vue({
+				el:'#parent',
+				data:{}	
+			})
+		</script>
+	</body>
+</html>

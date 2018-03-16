@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/Vue_2.2.2.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div>
+				<h1>我是父组件</h1>
+				<my-component>
+					<p>这是一些初始内容</p>
+    				<p>这是更多的初始内容</p>
+    				<div slot="cont">显示</div>
+				</my-component>
+			</div>
+			<div>
+				<child>
+					<template slot-scope="props">
+						<span>hello parent</span>
+						<span>{{props.text}}</span>
+					</template>
+				</child>
+			</div>
+			
+			<!--<my-awesome-list :items="items">
+			  <li slot="item" slot-scope="props" class="my-fancy-item">{{ props.text }}</li>
+			</my-awesome-list>-->
+		</div>
+		<script type="text/javascript">
+			Vue.component("my-component",{
+				template:"<div><h2>子组件标题</h2><slot name='cont'></slot></div>"
+			})
+			Vue.component("child",{
+				props:["text"],
+				template:"<div class='child'><slot text='qqqq'></slot></div>"
+			})
+			/*Vue.component("my-awesome-list",{
+				template:'<ul><slot name="item" v-for="item in items" :text="item.text"><!-- 这里写入备用内容 --></slot></ul>'
+			})*/
+			var app = new Vue({
+				el: '#app',
+				data: {
+					/*props:{
+						text:1
+					},
+					items:[{
+						id:0,
+						text:"q"
+					},{
+						id:1,
+						text:"w"
+					},{
+						id:2,
+						text:"t"
+					}],
+					list: [{
+							id: 0,
+							text: '蔬菜'
+						},
+						{
+							id: 1,
+							text: '奶酪'
+						},
+						{
+							id: 2,
+							text: '随便其它什么人吃的东西'
+						}
+					]*/
+				}
+			})
+		</script>
+	</body>
+
+</html>
