@@ -13,11 +13,14 @@ export default {
   		title:"in compontent 1！"
   	}
   },
+  events:function (msg) {
+  	console.log(events)
+  },
   props:['msgFromfather'],
   methods:{
   	click1:function (e) {
   		console.log(this.msgFromfather)
-  		this.$emit('child-tell',this.msgFromfather);
+  		this.$emit('child-tell',this.msgFromfather);  //emit方法   子组件往父组件传值
   	}
   }
 }

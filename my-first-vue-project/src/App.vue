@@ -37,6 +37,11 @@
 				deep:true
 			}
 		},
+		events:{
+			'child-tell':function (msg) {
+				console.log(msg) 
+			}
+		},
 		methods: {
 			btn: function(item) {
 				item.isFinished = !item.isFinished
@@ -45,18 +50,15 @@
 			listen:function (msg) {
 				console.log(msg)
 			},
-			onEnter: function() {
-				var obj = {
+			onEnter: function() { 
+				console.log(this.items)
+				console.log(this.newItem)
+				this.items.push({
 					keys: this.newItem,
 					isFinished: false
-				};
-				this.items.push(obj)
-				//var str = JSON.stringify(this.items);
-				//window.localStorage.setItem('items',str)
-				
-				this.newItem = ''; 
-				//var str = window.localStorage.getItem('items')
-				//console.log(str)
+				});
+				this.newItem = '';  
+				this.$broadcast('onAddnew',this.items)
 			},
 			componentUpdated:function (newdata,olddata) {
 				console.log(newdata)
